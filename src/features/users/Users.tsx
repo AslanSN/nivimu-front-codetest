@@ -17,6 +17,7 @@ import { columnCreator } from './slice/utils/usersComponentHelpers'
 //Styles
 import './styles.css'
 import { User } from './types/usersTypes'
+import CardFirstUser from './components/CardFirstUser'
 
 const Users: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -46,8 +47,6 @@ const Users: React.FC = () => {
 		sorter,
 		extra
 	) => {
-		// users.firstUser = extra.currentDataSource[0]
-		// console.log('params', extra.currentDataSource[0])
 		dispatch(tableChangesFirstUser(extra.currentDataSource[0]))
 	}
 	return (
@@ -67,24 +66,7 @@ const Users: React.FC = () => {
 					/>
 				</div>
 				<div className='card'>
-					<Card title='First User!'>
-						<ul>
-							<li>
-								<h4>Name:</h4>
-								<span>{firstUser?.name || 'First User'}</span>
-							</li>
-							<li>
-								<h4>Email:</h4>
-								<span>{firstUser?.email || 'Email@burns.com'} </span>
-							</li>
-							<li>
-								<h4>City:</h4>
-								<span>
-								{firstUser?.city || 'THE WORLD'}{' '}
-								</span>
-							</li>
-						</ul>
-					</Card>
+					<CardFirstUser firstUser={firstUser} />
 				</div>
 			</div>
 		</>

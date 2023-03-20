@@ -1,5 +1,3 @@
-//Classes - Constructors
-// import { UserClass } from '../../types/usersClasses';
 // Types
 import { Key } from 'react'
 import type { Filter, RawUser, User } from '../../types/usersTypes'

@@ -1,7 +1,11 @@
-import { store } from '../../../app/store'
-import { FilterProps, User } from '../types/usersTypes'
-import { fetchUsersAsync, findFirstUser } from './usersSlice'
+//Store and Slice
 import usersSlice from './usersSlice'
+import { store } from '../../../app/store'
+//Types
+import { FilterProps, User } from '../types/usersTypes'
+//Reducers and Thunks
+import { fetchUsersAsync, findFirstUser } from './usersSlice'
+//Utils functions
 import {
 	extractFiltersFromUsers,
 	formatFiltersForAntDesign,
