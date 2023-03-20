@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { User } from '../types/usersTypes';
+import { fetchUsers } from '../api/usersAPI';
 
 export interface UserState {
 	people: User[]
@@ -14,6 +15,11 @@ const initialState: UserState = {
 	loading: false,
 	error: ''
 }
+
+export const fetchUsersAsync = createAsyncThunk('users/fetchUsers', async () => {
+	const response = await fetchUsers(initialState.url)
+	return await response.json()
+})
 
 export const usersSlice = createSlice({
 	name: 'users',
