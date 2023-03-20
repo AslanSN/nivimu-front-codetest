@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { Filter, FilterProps, User } from '../types/usersTypes'
 import { fetchUsers } from '../api/usersAPI'
-import { extractFiltersFromUsers, formatFiltersForAntDesign, userCreator } from './utils/usersSliceUtils'
+import {
+	extractFiltersFromUsers,
+	formatFiltersForAntDesign,
+	userCreator,
+} from './utils/usersSliceUtils'
 
 export interface UserState {
 	people: User[]
@@ -40,13 +44,13 @@ export const usersSlice = createSlice({
 	initialState,
 	reducers: {
 		getNameFilters: (state) => {
-			const regex = /^[^\s]+/
+			const people = state.people
+			const regex = /^[^\s]+/ // Gets the first name or title
 
 			const props: FilterProps = {
 				filterName: 'name',
-				regex
+				regex,
 			}
-			const people = state.people
 
 			if (state.filters?.namesFilters !== undefined) {
 				const namesFilters = extractFiltersFromUsers(
@@ -56,9 +60,37 @@ export const usersSlice = createSlice({
 				)
 
 				state.filters.namesFilters = formatFiltersForAntDesign(namesFilters)
-
 			}
-		}
+		},
+		getEmailDomainFilters: (state) => {
+			const people = state.people
+			const regex = /\.([a-z]{2,})$/ // looks for domains (e.g.: .com)
+
+			const props: FilterProps = {
+				filterName: 'email',
+				regex,
+			}
+
+			if (state.filters?.namesFilters !== undefined) {
+				const emailFilters = extractFiltersFromUsers(
+					people,
+					props.filterName,
+					props.regex
+				)
+
+				state.filters.emailsDomainsFilters =
+					formatFiltersForAntDesign(emailFilters)
+			}
+		},
+		getCitiesFilters: (state) => {
+			const people = state.people
+
+			if (state.filters?.namesFilters !== undefined) {
+				const citiesFilters = extractFiltersFromUsers(people, 'city')
+
+				state.filters.citiesFilters = formatFiltersForAntDesign(citiesFilters)
+			}
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -77,5 +109,8 @@ export const usersSlice = createSlice({
 			})
 	},
 })
+
+export const { getNameFilters, getEmailDomainFilters, getCitiesFilters } =
+	usersSlice.actions
 
 export default usersSlice.reducer
