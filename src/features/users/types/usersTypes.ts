@@ -19,3 +19,8 @@ export interface Filter {
 	text: string
 	value: string,
 }
+
+export interface FilterProps {
+	filterName: string,
+	regex?: RegExp
+}

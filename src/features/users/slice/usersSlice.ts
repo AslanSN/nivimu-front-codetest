@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { Filter, User } from '../types/usersTypes'
+import type { Filter, FilterProps, User } from '../types/usersTypes'
 import { fetchUsers } from '../api/usersAPI'
-import { userCreator } from './utils/usersSliceUtils'
+import { extractFiltersFromUsers, userCreator } from './utils/usersSliceUtils'
 
 export interface UserState {
 	people: User[]
 	filters: {
-		names: Filter[]
-		emailsDomains: Filter[]
-		cities: Filter[]
+		namesFilters: Filter[]
+		emailsDomainsFilters: Filter[]
+		citiesFilters: Filter[]
 	}
 	url: string
 	loading: boolean
@@ -18,9 +18,9 @@ export interface UserState {
 const initialState: UserState = {
 	people: [],
 	filters: {
-		names: [],
-		emailsDomains: [],
-		cities: [],
+		namesFilters: [],
+		emailsDomainsFilters: [],
+		citiesFilters: [],
 	},
 	url: 'https://jsonplaceholder.typicode.com/users',
 	loading: false,
@@ -40,7 +40,23 @@ export const usersSlice = createSlice({
 	initialState,
 	reducers: {
 		getNameFilters: (state) => {
-			
+			const regex = /^[^\s]+/
+
+			const props: FilterProps = {
+				filterName: 'name',
+				regex
+			}
+			const people = state.people
+
+			if (state.filters?.namesFilters !== undefined) {
+				const namesFilters = extractFiltersFromUsers(
+					people,
+					props.filterName,
+					props.regex
+				)
+
+				
+			}
 		}
 	},
 	extraReducers: (builder) => {
