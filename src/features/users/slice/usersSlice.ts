@@ -29,16 +29,18 @@ export const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
-		
+
 	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchUsersAsync.pending, (state) => {
 				state.loading = true
+				console.log("up")
 			})
 			.addCase(fetchUsersAsync.fulfilled, (state, action) => {
 				state.loading = false
 				const users = action.payload.map(userCreator)
+				console.log(users)
 				state.people = users
 			})
 			.addCase(fetchUsersAsync.rejected, (state, action) => {

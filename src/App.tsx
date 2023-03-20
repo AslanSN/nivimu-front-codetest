@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import Users from './features/users/Users'
 
 function App() {
 	return (
@@ -7,6 +8,9 @@ function App() {
 			<header className='App-header'>
 				<h2>Nivimu front Test</h2>
 			</header>
+			<main>
+				<Users/>
+			</main>
 		</div>
 	)
 }

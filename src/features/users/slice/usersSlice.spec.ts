@@ -5,7 +5,7 @@ describe("Users reducer", () => {
 	it('should fetch all users data from API', async () => {
 		await store.dispatch(fetchUsersAsync())
 		const actual = store.getState().users.people
-
+		console.log(actual)
 		expect(actual.length).toBe(10)
 	})
 })
