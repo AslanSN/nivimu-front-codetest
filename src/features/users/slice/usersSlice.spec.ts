@@ -1,6 +1,7 @@
 import { store } from '../../../app/store'
-import { FilterProps } from '../types/usersTypes'
-import { fetchUsersAsync } from './usersSlice'
+import { FilterProps, User } from '../types/usersTypes'
+import { fetchUsersAsync, findFirstUser } from './usersSlice'
+import usersSlice from './usersSlice'
 import {
 	extractFiltersFromUsers,
 	formatFiltersForAntDesign,
@@ -14,6 +15,20 @@ describe('Users reducer', () => {
 		expect(actual.length).toBe(10)
 	})
 
+	describe('reducers', () => {
+		it('should extract the first user', () => {
+			const users = store.getState().users
+
+			const actual = usersSlice(users, findFirstUser())
+			const expected: User = {
+				name: 'Ervin Howel',
+				email: 'Shanna@melissa.tv',
+				city: 'Wisokyburg',
+			}
+			expect(actual.firstUser).toEqual(expected)
+			// dispatch(findFirstUser(people))
+		})
+	})
 	describe('utils', () => {
 		describe('raw filters getters', () => {
 			it('should extract raw filters from users', () => {
