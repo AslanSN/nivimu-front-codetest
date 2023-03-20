@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { User } from '../types/usersTypes'
 import { fetchUsers } from '../api/usersAPI'
+import { userCreator } from './utils/usersSliceUtils'
 
 export interface UserState {
 	people: User[]
