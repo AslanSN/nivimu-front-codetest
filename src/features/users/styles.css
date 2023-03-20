@@ -1,3 +1,26 @@
-div {
+div.container {
+	display: flex;
+	margin: auto;
+	justify-content: space-around;
+}
+div.table {
 	max-width: 70vmax;
+}
+div.card {
+	/* display: grid */
+}
+ul {
+	all: unset;
+	display: grid;
+}
+li {
+	display: grid;
+	grid-template:
+	"name name"
+	;
+	justify-items: start;
+}
+h4 {
+	margin: 0 .5rem 0 0;
+	display: inline;
 }

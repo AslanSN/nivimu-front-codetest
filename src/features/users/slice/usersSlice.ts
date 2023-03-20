@@ -14,6 +14,7 @@ export interface UserState {
 		emailsDomainsFilters: Filter[]
 		citiesFilters: Filter[]
 	}
+	firstUser: User | undefined
 	url: string
 	loading: boolean
 	error: string
@@ -26,6 +27,7 @@ const initialState: UserState = {
 		emailsDomainsFilters: [],
 		citiesFilters: [],
 	},
+	firstUser: undefined,
 	url: 'https://jsonplaceholder.typicode.com/users',
 	loading: false,
 	error: '',
@@ -43,6 +45,17 @@ export const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
+		findFirstUser: (state) => {
+			const people = state.people
+
+			const users = people.sort((a, b) => a.name.length - b.name.length)
+
+			state.firstUser = users[0]
+			// console.log(users[0])
+		},
+		tableChangesFirstUser: (state, action) => {
+			state.firstUser = action.payload
+		},
 		getNameFilters: (state) => {
 			const people = state.people
 			const regex = /^[^\s]+/ // Gets the first name or title
@@ -110,7 +123,12 @@ export const usersSlice = createSlice({
 	},
 })
 
-export const { getNameFilters, getEmailDomainFilters, getCitiesFilters } =
-	usersSlice.actions
+export const {
+	findFirstUser,
+	tableChangesFirstUser,
+	getNameFilters,
+	getEmailDomainFilters,
+	getCitiesFilters,
+} = usersSlice.actions
 
 export default usersSlice.reducer

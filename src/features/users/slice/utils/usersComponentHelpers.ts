@@ -13,7 +13,7 @@ export const columnCreator = (
 			key: 'name',
 			filters: namesFilters,
 			onFilter: (value, record) => record.name.includes(value.toString()),
-			defaultSortOrder: 'descend',
+			defaultSortOrder: 'ascend',
 			sorter: (a, b) => a.name.length - b.name.length,
 			sortDirections: ['descend'],
 		},
