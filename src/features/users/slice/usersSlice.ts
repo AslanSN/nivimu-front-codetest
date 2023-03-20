@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { Filter, FilterProps, User } from '../types/usersTypes'
 import { fetchUsers } from '../api/usersAPI'
-import { extractFiltersFromUsers, userCreator } from './utils/usersSliceUtils'
+import { extractFiltersFromUsers, formatFiltersForAntDesign, userCreator } from './utils/usersSliceUtils'
 
 export interface UserState {
 	people: User[]
@@ -55,7 +55,8 @@ export const usersSlice = createSlice({
 					props.regex
 				)
 
-				
+				state.filters.namesFilters = formatFiltersForAntDesign(namesFilters)
+
 			}
 		}
 	},
