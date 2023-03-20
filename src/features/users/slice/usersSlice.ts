@@ -30,13 +30,18 @@ export const usersSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(fetchUsersAsync.pending, (state) => {
-			state.loading = true
-		})
+		builder
+			.addCase(fetchUsersAsync.pending, (state) => {
+				state.loading = true
+			})
 			.addCase(fetchUsersAsync.fulfilled, (state, action) => {
 				state.loading = false
 				const users = action.payload.map(userCreator)
 				state.people = users
+			})
+			.addCase(fetchUsersAsync.rejected, (state, action) => {
+				state.loading = false
+				state.error = action.error.message || "Error not recognized. Fetch rejected"
 		})
 	},
 })
