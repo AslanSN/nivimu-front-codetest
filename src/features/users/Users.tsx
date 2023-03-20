@@ -1,7 +1,9 @@
-//React
+// React
 import { useEffect } from 'react'
-//Redux
+// Redux
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+// Ant Design
+import { Table } from 'antd'
 //Functions
 import { fetchUsersAsync } from './slice/usersSlice'
 
@@ -15,12 +17,13 @@ const Users: React.FC = () => {
 	}, [])
 
 	const { users } = useAppSelector((state) => state)
+	const { people } = users
 	return (
 		<>
 			{users.loading && <h3>Loading...</h3>}
 			{!users.loading && users.error ? alert(users.error) : null}
 			<div>
-				
+				<Table dataSource={people} />
 			</div>
 		</>
 	)
