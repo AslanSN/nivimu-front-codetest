@@ -7,8 +7,8 @@ import { Table } from 'antd'
 //Functions
 import { fetchUsersAsync } from './slice/usersSlice'
 import { columnCreator } from './slice/utils/usersComponentHelpers'
-import { ColumnsType } from 'antd/es/table'
-import { User } from './types/usersTypes'
+//Styles
+import './styles.css'
 
 const Users: React.FC = () => {
 	const dispatch = useAppDispatch()
@@ -22,7 +22,6 @@ const Users: React.FC = () => {
 	const { users } = useAppSelector((state) => state)
 	const { people } = users
 	useEffect(() => {
-		console.log(people)
 	}, [people])
 
 	return (
