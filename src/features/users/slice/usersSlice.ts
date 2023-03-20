@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { User } from '../types/usersTypes';
-import { fetchUsers } from '../api/usersAPI';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import type { User } from '../types/usersTypes'
+import { fetchUsers } from '../api/usersAPI'
 
 export interface UserState {
 	people: User[]
@@ -13,19 +13,31 @@ const initialState: UserState = {
 	people: [],
 	url: 'https://jsonplaceholder.typicode.com/users',
 	loading: false,
-	error: ''
+	error: '',
 }
 
-export const fetchUsersAsync = createAsyncThunk('users/fetchUsers', async () => {
-	const response = await fetchUsers(initialState.url)
-	return await response.json()
-})
+export const fetchUsersAsync = createAsyncThunk(
+	'users/fetchUsers',
+	async () => {
+		const response = await fetchUsers(initialState.url)
+		return await response.json()
+	}
+)
 
 export const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {},
-	extraReducers: () => { }
+	extraReducers: (builder) => {
+		builder.addCase(fetchUsersAsync.pending, (state) => {
+			state.loading = true
+		})
+			.addCase(fetchUsersAsync.fulfilled, (state, action) => {
+				state.loading = false
+				const users = action.payload.map(userCreator)
+				state.people = users
+		})
+	},
 })
 
 export default usersSlice.reducer
