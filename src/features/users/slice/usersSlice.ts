@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { User } from '../types/usersTypes'
+import type { Filter, User } from '../types/usersTypes'
 import { fetchUsers } from '../api/usersAPI'
 import { userCreator } from './utils/usersSliceUtils'
 
 export interface UserState {
 	people: User[]
+	filters: {
+		names: Filter[]
+		emailsDomains: Filter[]
+		cities: Filter[]
+	}
 	url: string
 	loading: boolean
 	error: string
@@ -12,6 +17,11 @@ export interface UserState {
 
 const initialState: UserState = {
 	people: [],
+	filters: {
+		names: [],
+		emailsDomains: [],
+		cities: [],
+	},
 	url: 'https://jsonplaceholder.typicode.com/users',
 	loading: false,
 	error: '',
@@ -29,7 +39,9 @@ export const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
-
+		getNameFilters: (state) => {
+			
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -43,8 +55,9 @@ export const usersSlice = createSlice({
 			})
 			.addCase(fetchUsersAsync.rejected, (state, action) => {
 				state.loading = false
-				state.error = action.error.message || "Error not recognized. Fetch rejected"
-		})
+				state.error =
+					action.error.message || 'Error not recognized. Fetch rejected'
+			})
 	},
 })
 

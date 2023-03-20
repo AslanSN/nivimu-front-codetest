@@ -14,3 +14,8 @@ export interface User {
 	email: string
 	city: string
 }
+
+export interface Filter {
+	text: string
+	value: string,
+}
