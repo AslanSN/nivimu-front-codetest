@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 // Ant Design
 import { Table, TableProps } from 'antd'
+//Types
+import type { User } from './types/usersTypes'
 //Functions
 import {
 	fetchUsersAsync,
@@ -13,17 +15,17 @@ import {
 	getNameFilters,
 	tableChangesFirstUser,
 } from './slice/usersSlice'
-import { columnCreator } from './slice/utils/usersComponentHelpers'
+import { columnsCreator } from './slice/utils/usersComponentHelpers'
+//Components
+import CardFirstUser from './components/CardFirstUser'
 //Styles
 import './styles.css'
-import { User } from './types/usersTypes'
-import CardFirstUser from './components/CardFirstUser'
 
 const Users: React.FC = () => {
 	const dispatch = useAppDispatch()
 
 	let isAwaken = false
-
+	// On Render...
 	useEffect(() => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		isAwaken ? (isAwaken = true) : dispatch(fetchUsersAsync())
@@ -31,6 +33,7 @@ const Users: React.FC = () => {
 
 	const { users } = useAppSelector((state) => state)
 	const { people } = users
+	// When "people" changes...
 	useEffect(() => {
 		dispatch(getNameFilters())
 		dispatch(getEmailDomainFilters())
@@ -41,6 +44,8 @@ const Users: React.FC = () => {
 
 	const { namesFilters, emailsDomainsFilters, citiesFilters } = users.filters
 	const { firstUser } = users
+
+	// When antd Table changes...
 	const onChange: TableProps<User>['onChange'] = (
 		pagination,
 		filters,
@@ -49,6 +54,7 @@ const Users: React.FC = () => {
 	) => {
 		dispatch(tableChangesFirstUser(extra.currentDataSource[0]))
 	}
+	
 	return (
 		<>
 			{users.loading && <h3>Loading...</h3>}

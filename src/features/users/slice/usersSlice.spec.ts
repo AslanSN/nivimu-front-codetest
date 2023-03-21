@@ -25,12 +25,12 @@ describe('Users reducer', () => {
 
 			const actual = usersSlice(users, findFirstUser())
 			const expected: User = {
-				name: 'Ervin Howel',
+				name: 'Ervin Howell',
 				email: 'Shanna@melissa.tv',
-				city: 'Wisokyburg',
+				city: 'Wisokyburgh',
+				key: 2
 			}
 			expect(actual.firstUser).toEqual(expected)
-			// dispatch(findFirstUser(people))
 		})
 	})
 	describe('utils', () => {
@@ -42,13 +42,12 @@ describe('Users reducer', () => {
 					filterName: 'name',
 					regex,
 				}
-
 				const rawFilters = extractFiltersFromUsers(
 					people,
 					props.filterName,
 					props.regex
 				)
-
+				
 				expect(rawFilters.length).toBeGreaterThan(3)
 			})
 

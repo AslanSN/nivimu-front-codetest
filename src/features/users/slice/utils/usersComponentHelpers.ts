@@ -1,6 +1,14 @@
 import { ColumnsType } from 'antd/es/table'
 import { User, Filter } from '../../types/usersTypes'
 
+/**
+ * * Creates an Array of Columns
+ * * Each column has its personalized name and filter
+ * @param namesFilters - Filter[]
+ * @param emailsFilters - Filter[]
+ * @param citiesFilters - Filter[]
+ * @returns columns - User[ColumnsType]
+ */
 export const columnCreator = (
 	namesFilters: Filter[],
 	emailsFilters: Filter[],
