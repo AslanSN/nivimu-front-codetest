@@ -20,7 +20,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 5. Add new card component to **displaying always first row data** of table
 
 ## Result
+You can check the result in this pabe: https://aslansn.github.io/nivimu-front-codetest/
 
+But if you don't wanna here is a preview:
 <img src="./public/appResult.png">
 
 ## Execution
