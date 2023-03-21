@@ -60,7 +60,7 @@ export const usersSlice = createSlice({
 		findFirstUser: (state) => {
 			const people = state.people
 
-			const users = people.sort((a, b) => a.name.length - b.name.length)
+			const users = people.sort((a, b) => a.name.localeCompare(b.name))
 
 			state.firstUser = users[0]
 		},
