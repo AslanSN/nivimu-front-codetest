@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 // Redux
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 // Ant Design
-import { Table, Card, TableProps } from 'antd'
+import { Table, TableProps } from 'antd'
 //Functions
 import {
 	fetchUsersAsync,
