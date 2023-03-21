@@ -4,9 +4,9 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 // Ant Design
 import { Table, TableProps } from 'antd'
-//Types
+// Types
 import type { User } from './types/usersTypes'
-//Functions
+// Slice Functions
 import {
 	fetchUsersAsync,
 	findFirstUser,
@@ -15,12 +15,19 @@ import {
 	getNameFilters,
 	tableChangesFirstUser,
 } from './slice/usersSlice'
+// Helpers
 import { columnsCreator } from './slice/utils/usersComponentHelpers'
-//Components
+// Components
 import CardFirstUser from './components/CardFirstUser'
-//Styles
+// Styles
 import './styles.css'
 
+/**
+ * ! React Component - Users
+ * * Creates the main component of this app
+ * ? Imported by: App.tsx
+ * @returns React Component
+ */
 const Users: React.FC = () => {
 	const dispatch = useAppDispatch()
 
@@ -54,7 +61,7 @@ const Users: React.FC = () => {
 	) => {
 		dispatch(tableChangesFirstUser(extra.currentDataSource[0]))
 	}
-	
+
 	return (
 		<>
 			{users.loading && <h3>Loading...</h3>}
@@ -63,7 +70,7 @@ const Users: React.FC = () => {
 				<div className='table'>
 					<Table
 						dataSource={people}
-						columns={columnCreator(
+						columns={columnsCreator(
 							namesFilters,
 							emailsDomainsFilters,
 							citiesFilters

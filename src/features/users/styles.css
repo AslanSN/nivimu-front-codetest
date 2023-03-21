@@ -6,9 +6,6 @@ div.container {
 div.table {
 	max-width: 70vmax;
 }
-div.card {
-	/* display: grid */
-}
 ul {
 	all: unset;
 	display: grid;

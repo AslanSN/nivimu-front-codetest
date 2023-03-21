@@ -9,7 +9,7 @@ import { User, Filter } from '../../types/usersTypes'
  * @param citiesFilters - Filter[]
  * @returns columns - User[ColumnsType]
  */
-export const columnCreator = (
+export const columnsCreator = (
 	namesFilters: Filter[],
 	emailsFilters: Filter[],
 	citiesFilters: Filter[]
