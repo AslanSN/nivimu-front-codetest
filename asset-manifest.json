@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nivimu-front-codetest/static/css/main.9ab53f4f.css",
+    "main.js": "/nivimu-front-codetest/static/js/main.1f00fda4.js",
+    "static/js/787.c0c5c792.chunk.js": "/nivimu-front-codetest/static/js/787.c0c5c792.chunk.js",
+    "index.html": "/nivimu-front-codetest/index.html",
+    "main.9ab53f4f.css.map": "/nivimu-front-codetest/static/css/main.9ab53f4f.css.map",
+    "main.1f00fda4.js.map": "/nivimu-front-codetest/static/js/main.1f00fda4.js.map",
+    "787.c0c5c792.chunk.js.map": "/nivimu-front-codetest/static/js/787.c0c5c792.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ab53f4f.css",
+    "static/js/main.1f00fda4.js"
+  ]
+}
