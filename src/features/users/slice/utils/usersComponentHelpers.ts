@@ -1,5 +1,6 @@
 import { ColumnsType } from 'antd/es/table'
 import { User, Filter } from '../../types/usersTypes'
+import { sorter, onTableFilter } from './usersSliceUtils';
 
 /**
  * * Creates an Array of Columns
@@ -20,9 +21,9 @@ export const columnsCreator = (
 			dataIndex: 'name',
 			key: 'name',
 			filters: namesFilters,
-			onFilter: (value, record) => record.name.includes(value.toString()),
+			onFilter: (value, record) => onTableFilter(value, record, 'name'),
 			defaultSortOrder: 'ascend',
-			sorter: (a, b) => a.name.length - b.name.length,
+			sorter: (a, b) => sorter(a, b, 'name'),
 			sortDirections: ['descend'],
 		},
 		{
@@ -30,8 +31,8 @@ export const columnsCreator = (
 			dataIndex: 'email',
 			key: 'email',
 			filters: emailsFilters,
-			onFilter: (value, record) => record.email.includes(value.toString()),
-			sorter: (a, b) => String(a.email).length - String(b.email).length,
+			onFilter: (value, record) => onTableFilter(value, record, 'email'),
+			sorter: (a, b) => sorter(a, b, 'email'),
 			ellipsis: true,
 		},
 		{
@@ -39,8 +40,8 @@ export const columnsCreator = (
 			dataIndex: 'city',
 			key: 'city',
 			filters: citiesFilters,
-			onFilter: (value, record) => record.city.includes(value.toString()),
-			sorter: (a, b) => a.city.length - b.city.length,
+			onFilter: (value, record) => onTableFilter(value, record, 'city'),
+			sorter: (a, b) =>sorter(a, b, 'city'),
 			ellipsis: true,
 		},
 	]

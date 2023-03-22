@@ -4,6 +4,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { Filter, FilterProps, User } from '../types/usersTypes'
 // API
 import { fetchUsers } from '../api/usersAPI'
+import { sorter } from './utils/usersSliceUtils';
 // Utils
 import {
 	extractFiltersFromUsers,
@@ -60,7 +61,7 @@ export const usersSlice = createSlice({
 		findFirstUser: (state) => {
 			const people = state.people
 
-			const users = people.sort((a, b) => a.name.localeCompare(b.name))
+			const users = people.sort((a, b) => sorter(a,b, "name"))
 
 			state.firstUser = users[0]
 		},
