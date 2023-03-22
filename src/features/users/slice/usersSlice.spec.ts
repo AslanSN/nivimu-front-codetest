@@ -4,7 +4,8 @@ import { store } from '../../../app/store'
 //Types
 import { FilterProps, User } from '../types/usersTypes'
 //Reducers and Thunks
-import { fetchUsersAsync, findFirstUser } from './usersSlice'
+import { fetchUsersAsync, findFirstUser, UserState } from './usersSlice'
+import { userCreator } from './utils/usersSliceUtils'
 //Utils functions
 import {
 	extractFiltersFromUsers,
@@ -21,14 +22,46 @@ describe('Users reducer', () => {
 
 	describe('reducers', () => {
 		it('should extract the first user', () => {
-			const users = store.getState().users
+			const initialTestPeople: User[] = [
+				{
+					key: 1,
+					name: 'Luke',
+					email: 'Robles@oak.nice',
+					city: 'San Petersburg',
+				},
+				{
+					key: 2,
+					name: 'The Ramones',
+					email: 'heavy@forever.metal',
+					city: 'Inferno',
+				},
+				{
+					key: 3,
+					name: 'Leia',
+					email: 'han@solo.love',
+					city: 'Alderaan',
+				},
+			]
+			
+			const initialTestUsers: UserState = {
+				people: initialTestPeople,
+				filters: {
+					namesFilters: [],
+					emailsDomainsFilters: [],
+					citiesFilters: [],
+				},
+				firstUser: undefined,
+				url: 'https://jsonplaceholder.typicode.com/users',
+				loading: false,
+				error: '',
+			}
 
-			const actual = usersSlice(users, findFirstUser())
+			const actual = usersSlice(initialTestUsers, findFirstUser())
 			const expected: User = {
-				name: 'Ervin Howell',
-				email: 'Shanna@melissa.tv',
-				city: 'Wisokyburgh',
-				key: 2
+				key: 3,
+				name: 'Leia',
+				email: 'han@solo.love',
+				city: 'Alderaan',
 			}
 			expect(actual.firstUser).toEqual(expected)
 		})
@@ -47,7 +80,7 @@ describe('Users reducer', () => {
 					props.filterName,
 					props.regex
 				)
-				
+
 				expect(rawFilters.length).toBeGreaterThan(3)
 			})
 
