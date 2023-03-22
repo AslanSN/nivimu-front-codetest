@@ -19,10 +19,27 @@ export const userCreator = (object: RawUser): User => {
 	}
 	return user
 }
-
+/**
+ * ! Util
+ * ? Sorter
+ * * Sorts for column's name by alphabetical order
+ * @param a
+ * @param b
+ * @param name
+ * @returns number
+ */
 export const sorter = (a: User, b: User, name: string): number =>
 	a[name].toString().localeCompare(b[name].toString())
 
+/**
+ * ! Util
+ * ? Filter
+ * * It makes sure that the value is on the record
+ * @param value
+ * @param record
+ * @param name
+ * @returns
+ */
 export const onTableFilter = (
 	value: string | number | boolean,
 	record: User,
