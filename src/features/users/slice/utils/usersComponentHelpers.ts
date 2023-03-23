@@ -24,7 +24,7 @@ export const columnsCreator = (
 			onFilter: (value, record) => onTableFilter(value, record, 'name'),
 			defaultSortOrder: 'ascend',
 			sorter: (a, b) => sorter(a, b, 'name'),
-			sortDirections: ['descend'],
+			sortDirections: ['descend', 'ascend'],
 		},
 		{
 			title: 'Email',
